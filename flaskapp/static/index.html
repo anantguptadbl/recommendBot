@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App" style="background-color:white">
+<head>
+
+<!-- Meta Data -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Set the Title -->
+<title>Super Cool Softwares</title>
+
+<!-- External StyleSheet references -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- External JS Links -->
+<script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+
+<!-- Internal Resources -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/router.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/tictactoe.js') }}"></script>
+<!--
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/htmlDataTableController.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/movieRecommender.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/greenCover.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/wikiTrivia.js') }}"></script>
+-->
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<!--
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/general.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/font-awesome.css') }}">
+-->
+<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+Font-Awesome/css/font-awesome.css
+</head>
+
+<!-- Start of the Body -->
+<body style="background-color:white">
+<header background="assets/img/yo.png">
+<div>
+    <h1>Au Revoir </h1>
+</div>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <!--<a class="navbar-brand" href="#">LOGO</a>-->
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">HOME</a></li>
+        <li><a href="#/tictactoe">TIC TAC TOE</a></li>
+	<!--
+        <li><a href="#/movierecommender">Movie Recommender</a></li>
+        <li><a href="#/greencover">Greenery Coverage</a></li>
+        <li><a href="#/wikitrivia">Wiki Trivia</a></li>
+        <li><a href="#">Contact</a></li>
+	-->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
+
+<! -- Main functinal component -->
+<div ng-view></div>
+
+<!-- Signature -->
+<!--
+<footer>
+    <div class="container">
+        <p><a class="github" href="https://github.com/anantguptadbl">Anant Gupta</a></p>
+    </div>
+</footer>
+-->
+
+</body>
+</html>

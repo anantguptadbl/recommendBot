@@ -1,0 +1,21 @@
+<div ng-app="App">
+<div ng-controller="tictactoeController">
+ 
+<div class="container">
+  <div class="well" align="center">
+	<div><button class="btn-primary btn-lg" ng-repeat="cell in board[0]" ng-disabled="isTaken(cell);" ng-click="move(cell);">{{ cell.value }}</button></div>
+	<div><button class="btn-primary btn-lg" ng-repeat="cell in board[1]" ng-disabled="isTaken(cell);" ng-click="move(cell);">{{ cell.value }}</button></div>
+	<div><button class="btn-primary btn-lg" ng-repeat="cell in board[2]" ng-disabled="isTaken(cell);" ng-click="move(cell);">{{ cell.value }}</button></div>
+	<br/>
+	<p>
+	  <span ng-hide="winner || cat">Current Player: {{ currentPlayer }}</span>
+	  <span ng-show="winner">Player {{ currentPlayer }} won!</span>
+	  <span ng-show="cat">Cat</span>
+	</p>
+  </div>
+</div>
+          
+<button ng-click="reset();" class="btn btn-primary btn-large" style="margin:auto;display:block;">New Game</button>
+
+</div>
+</div>
