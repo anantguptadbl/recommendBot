@@ -1,13 +1,22 @@
 App.config(function($routeProvider) {
   $routeProvider
-    .when('/', {
-      templateUrl: 'static/views/welcome.html',
-      controller: 'View1Controller'
-    })
-    .when('/tictactoe', {
-      templateUrl: 'static/views/tictactoe.html',
-      controller: 'tictactoeController'
-    })/*
+	.when('/', {
+	templateUrl: 'static/views/about.html',
+	controller: 'aboutController'
+	})
+	.when('/about', {
+	templateUrl: 'static/views/about.html',
+	controller: 'aboutController'
+	})
+	.when('/tictactoe', {
+	templateUrl: 'static/views/tictactoe.html',
+	controller: 'tictactoeController'
+	})
+	.when('/contact', {
+	templateUrl: 'static/views/contact.html',
+	controller: 'contactController'
+	})
+/*
     .when('/movierecommender', {
       templateUrl: 'static/views/movieRecommendation.html',
       controller: 'controller2'

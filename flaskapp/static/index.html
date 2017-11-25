@@ -19,10 +19,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
 
+<!-- Menu Toggle Script -->
+<script>
+$("#menu-toggle").click(function(e) {
+e.preventDefault();
+$("#wrapper").toggleClass("toggled");
+});
+</script>
+
 <!-- Internal Resources -->
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 <script src="{{ url_for('static', filename='js/router.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/tictactoe.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/about.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/contact.js') }}"></script>
 <!--
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/htmlDataTableController.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/movieRecommender.js') }}"></script>
@@ -32,6 +42,7 @@
 
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/simple-sidebar.css') }}">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <!--
@@ -41,57 +52,62 @@
 -->
 <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-Font-Awesome/css/font-awesome.css
 </head>
 
 <!-- Start of the Body -->
 <body style="background-color:white">
-<header background="assets/img/yo.png">
-<div>
-    <h1>Au Revoir </h1>
-</div>
+	<!-- Header Portion -->	
+	<header>
+	<div align="center">
+	    <h1>Welcome to something interesting </h1>
+	</div>
+	</header>
+
+	<div id="wrapper" class="toggled">
+
+	<!-- Sidebar -->
+	<div id="sidebar-wrapper">
+	    <ul class="sidebar-nav">
+		<li class="sidebar-brand">
+		    <a href="#/about">
+		        About
+		    </a>
+		</li>
+		<li>
+		    <a href="#/tictactoe">TicTacToe</a>
+		</li>
+		<li>
+		    <a href="#/contact">Contact</a>
+		</li>
+	    </ul>
+	</div>
+	<!-- /#sidebar-wrapper -->
+
+	<!-- Page Content -->
+
+	<div id="page-content-wrapper">
+		<!--
+		<div class="container-fluid">
+		<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+		</div>
+		-->
+		<div ng-view></div>
+	</div>
+	<!-- /#page-content-wrapper -->
+
+	</div>
+    <!-- /#wrapper -->
 
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <!--<a class="navbar-brand" href="#">LOGO</a>-->
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">HOME</a></li>
-        <li><a href="#/tictactoe">TIC TAC TOE</a></li>
-	<!--
-        <li><a href="#/movierecommender">Movie Recommender</a></li>
-        <li><a href="#/greencover">Greenery Coverage</a></li>
-        <li><a href="#/wikitrivia">Wiki Trivia</a></li>
-        <li><a href="#">Contact</a></li>
-	-->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</header>
 
-<! -- Main functinal component -->
-<div ng-view></div>
+	<!-- Signature -->
 
-<!-- Signature -->
-<!--
-<footer>
-    <div class="container">
-        <p><a class="github" href="https://github.com/anantguptadbl">Anant Gupta</a></p>
-    </div>
-</footer>
--->
+	<footer>
+	    <div class="container">
+		<p><a class="github" href="https://github.com/anantguptadbl">Anant Gupta</a></p>
+	    </div>
+	</footer>
+
 
 </body>
 </html>
