@@ -7,6 +7,13 @@ from sklearn import preprocessing
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Dropout
 from keras.models import load_model
+import sys,site
+# Uncomment for AWS
+#site.addsitedir('/home/ubuntu/.local/lib/python2.7/site-packages')
+sys.path.insert(0, "/var/www/html/flaskapp")
+#from mockup.app import app as application 
+keras.backend.clear_session()
+
 
 # Initial level flask configuration
 print "the file path is " + os.path.dirname(os.path.abspath(__file__))
@@ -30,6 +37,7 @@ def trainModel(inputData,labels):
 	model.fit(inputData, labels, batch_size=32, nb_epoch=20, verbose=2, validation_split=0.15)
 	#Save partly trained model
 	model.save('tictactoe_model')
+	keras.backend.clear_session()
 
 def getProb(x,curInput,model):
 	modifiedInput=np.array([y if i !=x else 1 for i,y in enumerate(curInput[0])]).reshape(1,9,)
