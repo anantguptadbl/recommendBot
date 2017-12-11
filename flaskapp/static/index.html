@@ -15,9 +15,12 @@
 <!-- External JS Links -->
 <script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
 <script src="https://code.angularjs.org/1.2.16/angular-route.min.js"></script>
+<script src="https://rawgit.com/angular/bower-material/master/angular-material.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-messages.min.js"></script>
+
 
 <!-- Menu Toggle Script -->
 <script>
@@ -31,6 +34,7 @@ $("#wrapper").toggleClass("toggled");
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 <script src="{{ url_for('static', filename='js/router.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/tictactoe.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/summarizer.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/about.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/contact.js') }}"></script>
 <!--
@@ -44,6 +48,8 @@ $("#wrapper").toggleClass("toggled");
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/simple-sidebar.css') }}">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="https://rawgit.com/angular/bower-material/master/angular-material.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <!--
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
@@ -75,6 +81,9 @@ $("#wrapper").toggleClass("toggled");
 		</li>
 		<li>
 		    <a href="#/tictactoe">TicTacToe</a>
+		</li>
+		<li>
+		    <a href="#/summarizer">Summarizer</a>
 		</li>
 		<li>
 		    <a href="#/contact">Contact</a>

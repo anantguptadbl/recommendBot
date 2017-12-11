@@ -12,6 +12,10 @@ App.config(function($routeProvider) {
 	templateUrl: 'static/views/tictactoe.html',
 	controller: 'tictactoeController'
 	})
+	.when('/summarizer', {
+	templateUrl: 'static/views/summarizer.html',
+	controller: 'summarizerController'
+	})
 	.when('/contact', {
 	templateUrl: 'static/views/contact.html',
 	controller: 'contactController'

@@ -142,3 +142,28 @@ footer a:hover {
   min-height: 24px;
 }
 
+/* for the Tab */
+h3.tab{
+    margin: 0;
+}
+ul.tabClass{
+    overflow:hidden;
+    margin: 0;
+    padding: 0;
+}
+li.tab{
+    display:inline-block;
+}
+li.tab a{
+    padding: 10px 15px;
+    background: #ddd;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    display:block;
+}
+.tab-content{
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin:0
+}

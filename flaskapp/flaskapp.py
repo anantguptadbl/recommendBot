@@ -3,11 +3,16 @@ import os,json
 from flask import Flask
 from flask import Flask,render_template,request
 import numpy as np
+import keras
 from sklearn import preprocessing
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Dropout
 from keras.models import load_model
 import sys,site
+
+# Add other Libraries
+import summarizer
+
 # Uncomment for AWS
 #site.addsitedir('/home/ubuntu/.local/lib/python2.7/site-packages')
 sys.path.insert(0, "/var/www/html/flaskapp")
@@ -52,6 +57,16 @@ def getModifiedArray(curInput,model):
 	modifiedInput=np.array([y if i !=newPlace else 1 for i,y in enumerate(curInput[0])]).reshape(1,9,)
 	modifiedInput=FlaskBoardtoJSONSingle(modifiedInput[0])
 	return(modifiedInput)
+
+@app.route('/getSummarizedResults', methods=["GET","POST"])
+def getSummarizedResults():
+	print(request)
+	searchString=request.args.get('searchString')
+	fullData=summarizer.getDataFromLinks(summarizer.getLinksForSearchString(searchString))
+	print("the fullData is {}".format(fullData))
+	impNouns=summarizer.getImpNouns(fullData)
+	print("impNouns are {}".format(impNouns))
+	return(json.dumps({"text":fullData,"impNouns":impNouns}))
 
 @app.route('/getNextMove', methods=["GET","POST"])
 def getNextMove():

@@ -1,0 +1,24 @@
+<div ng-app="App">
+<div ng-controller="summarizerController">
+ 
+<div class="col-md-12">
+<input type="text" ng-model="searchString"> <button ng-click="getSearchResults()">Submit</button>
+</div>
+
+<div ng-init="tab=1">
+	<ul>
+		<li class="tab" ng-class="{active:tab==1}">
+			<a href ng-click="tab = 1">ItemList</a>
+		</li>
+	    <li class="tab" ng-class="{active:tab==2}">
+			<a href ng-click="tab = 2">FullText</a>
+		</li>
+	<ul>
+
+	<p class="tab-content" ng-show="tab==1">{{nouns}}</p>
+	<p class="tab-content" ng-show="tab==2">{{searchResults}}</p>
+	
+</div>
+
+</div>
+</div>
