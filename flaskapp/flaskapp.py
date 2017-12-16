@@ -14,7 +14,7 @@ import sys,site
 import summarizer
 
 # Uncomment for AWS
-#site.addsitedir('/home/ubuntu/.local/lib/python2.7/site-packages')
+site.addsitedir('/home/ubuntu/.local/lib/python2.7/site-packages')
 sys.path.insert(0, "/var/www/html/flaskapp")
 #from mockup.app import app as application 
 keras.backend.clear_session()
@@ -62,11 +62,16 @@ def getModifiedArray(curInput,model):
 def getSummarizedResults():
 	print(request)
 	searchString=request.args.get('searchString')
-	fullData=summarizer.getDataFromLinks(summarizer.getLinksForSearchString(searchString))
-	print("the fullData is {}".format(fullData))
-	impNouns=summarizer.getImpNouns(fullData)
-	print("impNouns are {}".format(impNouns))
-	return(json.dumps({"text":fullData,"impNouns":impNouns}))
+	linksData=summarizer.getLinksForSearchString(searchString)
+	fullData=summarizer.getDataFromLinks(linksData[0])
+	redundantData=summarizer.getDataFromLinks(linksData[1])
+	#fullData=summarizer.getDataFromLinks(linksData[0])
+	#print("the fullData is {}".format(fullData))
+	normalNouns=summarizer.getAllNouns(fullData)
+	redundantNouns=summarizer.getAllNouns(redundantData)
+	potentialWords=[x for x in normalNouns if x not in redundantNouns]
+	#print("impNouns are {}".format(impNouns))
+	return(json.dumps({"text":fullData,"impNouns":potentialWords}))
 
 @app.route('/getNextMove', methods=["GET","POST"])
 def getNextMove():

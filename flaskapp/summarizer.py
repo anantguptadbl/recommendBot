@@ -6,30 +6,61 @@ import bs4
 import re
 import json
 import nltk
-
+import os,site
+import subprocess
+from subprocess import Popen
 # CONFIG
 # AWS
 path_to_phatomJS='/home/ubuntu/recommendBot/flaskapp/phantomjs'
+site.addsitedir('/home/ubuntu/.local/lib/python2.7/site-packages')
+nltk.data.path.append("/home/ubuntu/nltk_data/")
 # LOCAL
-path_to_phatomJS='/home/anantgupta/Documents/Web/searchResults/phantomjs'
+#path_to_phatomJS='/home/anantgupta/Documents/Web/searchResults/phantomjs'
 
 def extractLinks(pageContents):
+    #p = subprocess.Popen(["echo", "hello world"], stdout=subprocess.PIPE)
     soup = BeautifulSoup(pageContents, "html.parser")
     linkElements = soup.find_all("a", attrs={"class":"result__url"})
     linksData=[]
-    for linkElement in linkElements[0:2]:
+    commonLinksData=[]
+    for linkElement in linkElements:
+        curStr=linkElement['href']
+        validLink=curStr[curStr.find('uddg=') + 5:]
+        validLink=validLink.replace('%3A',':').replace('%2F','/').replace('%2D','-')
+        if('duckduckgo.com' not in validLink):
+            print("the validlink is {}".format(validLink))
+    	    browser = webdriver.PhantomJS(executable_path = path_to_phatomJS,service_log_path=os.path.devnull)
+            #browser = webdriver.PhantomJS(executable_path = path_to_phatomJS,service_log_path='/home/ubuntu/recommendBot/flaskapp/ghostdriver.log')
+            browser.get(validLink)
+            pageContents=browser.page_source
+            browser.close()
+            browser.quit()
+	    #print p.communicate()
+            print("Got data for {}".format(validLink))
+            linksData.append(pageContents)
+    for linkElement in linkElements:
         curStr=linkElement['href']
         validLink=curStr[curStr.find('uddg=') + 5:]
         validLink=validLink.replace('%3A',':').replace('%2F','/').replace('%2D','-')
         print("the validlink is {}".format(validLink))
-        browser = webdriver.PhantomJS(executable_path = path_to_phatomJS)
-        browser.get(validLink)
-        pageContents=browser.page_source
-        browser.close()
-        print("Got data for {}".format(validLink))
-        linksData.append(pageContents)
-    return(linksData)
-
+        if('duckduckgo.com' not in validLink):
+            validLink=validLink[0:validLink.find('.com')+4]
+    	    browser = webdriver.PhantomJS(executable_path = path_to_phatomJS,service_log_path=os.path.devnull)
+            #browser = webdriver.PhantomJS(executable_path = path_to_phatomJS,service_log_path='/home/ubuntu/recommendBot/flaskapp/ghostdriver.log')
+            browser.get(validLink)
+            pageContents=browser.page_source
+            browser.close()
+            browser.quit()
+	    #print p.communicate()
+            print("Got data for {}".format(validLink))
+            commonLinksData.append(pageContents)
+    #try:
+    #    p.kill()
+    #except OSError:
+    #    # can't kill a dead proc
+    #    pass
+    return([linksData,commonLinksData])
+    
 
 def getElements(childrenList,leafElements):
     curChildrenList=[]
@@ -56,8 +87,9 @@ def CleanLeafData(leafDataList):
 def getLinksForSearchString(searchString):
     searchString=searchString.replace(' ','+')
     searchString=re.sub('r[^a-zA-Z0-9\+]+',' ',searchString)
-    webPageLink='https://duckduckgo.com/html/?q=best+places+to+visit+bangalore'
-    browser = webdriver.PhantomJS(executable_path = path_to_phatomJS)
+    #webPageLink='https://duckduckgo.com/html/?q=best+places+to+visit+bangalore'
+    webPageLink='https://duckduckgo.com/html/?q={}'.format(searchString)
+    browser = webdriver.PhantomJS(executable_path = path_to_phatomJS,service_log_path=os.path.devnull)
     browser.get(webPageLink)
     pageContents=browser.page_source
     browser.close()
@@ -75,26 +107,35 @@ def getNounList(text):
     # Additional check
     text = re.sub('[^0-9a-zA-Z]+', ' ', text)
     wordList=[]
-    print("The text is {}".format(text))
+    #print("The text is {}".format(text))
     for word in text.split(' '):
 	if(len(word) > 0):
-            print("the curWord is {}".format(word))
+            #print("the curWord is {}".format(word))
 	    if((nltk.pos_tag(word.split())[0][1] in ['NN','NNP','NNS']) & (len(word)<20) & (word[0].istitle()==True)):
                 wordList.append(word)
-	        print(word)
+	        #print(word)
     return(wordList)
 
 def getImpNouns(fullData):
-	import nltk
 	allNouns=[]
 	for x in fullData:
 	    nounList=[]
 	    for textVal in x:
 		nounList=nounList + getNounList(textVal)
-		print("The nounList is {}".format(nounList))
+		#print("The nounList is {}".format(nounList))
 	    nounList=list(set(nounList))
 	    allNouns=allNouns + nounList
 	return(json.dumps(list(set(allNouns))))	
+
+def getAllNouns(fullData):
+    allNouns=[]
+    for x in fullData:
+        nounList=[]
+        for textVal in x:
+            nounList=nounList + getNounList(textVal)
+        nounList=list(set(nounList))
+        allNouns=allNouns + nounList
+    return(list(set(allNouns)))
 	
 if __name__=="__main__":
     fullData=getDataFromLinks(getLinksForSearchString('things+to+do+in+bangalore'))
