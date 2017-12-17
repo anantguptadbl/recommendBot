@@ -70,8 +70,9 @@ def getSummarizedResults():
 	normalNouns=summarizer.getAllNouns(fullData)
 	redundantNouns=summarizer.getAllNouns(redundantData)
 	potentialWords=[x for x in normalNouns if x not in redundantNouns]
+	placeDict=dict((x,summarizer.getosmDetails(x)) for x in potentialWords)
 	#print("impNouns are {}".format(impNouns))
-	return(json.dumps({"text":fullData,"impNouns":potentialWords}))
+	return(json.dumps({"text":fullData,"impNouns":potentialWords,"placeDict":placeDict}))
 
 @app.route('/getNextMove', methods=["GET","POST"])
 def getNextMove():

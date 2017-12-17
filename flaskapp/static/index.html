@@ -20,7 +20,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-messages.min.js"></script>
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
+
+<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+<script src="https://openlayers.org/en/v4.6.4/build/ol.js"></script>
 
 <!-- Menu Toggle Script -->
 <script>
@@ -45,6 +50,7 @@ $("#wrapper").toggleClass("toggled");
 -->
 
 <!-- CSS -->
+<link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/simple-sidebar.css') }}">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">

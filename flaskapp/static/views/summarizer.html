@@ -1,24 +1,95 @@
 <div ng-app="App">
 <div ng-controller="summarizerController">
- 
+
 <div class="col-md-12">
 <input type="text" ng-model="searchString"> <button ng-click="getSearchResults()">Submit</button>
 </div>
 
+<!--
+<input type="button" ng-click="myCtrl1()"></input>
+{{halo}}
+-->
+
+<!--<div id="mapdiv1"></div>-->
+
+<div id="map" class="map"></div>
+<!--<div style="display: none;">-->
+<!-- Clickable label for Vienna -->
+<!--<a class="overlay" id="vienna" target="_blank" href="http://en.wikipedia.org/wiki/Vienna">Vienna</a>
+-->
+<div id="marker1" class="marker"></div>
+<div id="marker2" class="marker"></div>
+<div id="marker3" class="marker"></div>
+<div id="marker4" class="marker"></div>
+<div id="marker5" class="marker"></div>
+<div id="marker6" class="marker"></div>
+<div id="marker7" class="marker"></div>
+<div id="marker8" class="marker"></div>
+<div id="marker9" class="marker"></div>
+<div id="marker10" class="marker"></div>
+<div id="marker11" class="marker"></div>
+<div id="marker12" class="marker"></div>
+<div id="marker13" class="marker"></div>
+<div id="marker14" class="marker"></div>
+<div id="marker15" class="marker"></div>
+<div id="marker16" class="marker"></div>
+<div id="marker17" class="marker"></div>
+<div id="marker18" class="marker"></div>
+<div id="marker19" class="marker"></div>
+<div id="marker20" class="marker"></div>
+
+<a class="overlay" id="textmarker1">{{markerTextArray[0]}}</a>
+<a class="overlay" id="textmarker2">{{markerTextArray[1]}}</a>
+<a class="overlay" id="textmarker3">{{markerTextArray[2]}}</a>
+<a class="overlay" id="textmarker4">{{markerTextArray[3]}}</a>
+<a class="overlay" id="textmarker5">{{markerTextArray[4]}}</a>
+<a class="overlay" id="textmarker6">{{markerTextArray[6]}}</a>
+<a class="overlay" id="textmarker7">{{markerTextArray[7]}}</a>
+<a class="overlay" id="textmarker8">{{markerTextArray[8]}}</a>
+<a class="overlay" id="textmarker9">{{markerTextArray[9]}}</a>
+<a class="overlay" id="textmarker10">{{markerTextArray[10]}}</a>
+<a class="overlay" id="textmarker11">{{markerTextArray[11]}}</a>
+<a class="overlay" id="textmarker12">{{markerTextArray[12]}}</a>
+<a class="overlay" id="textmarker13">{{markerTextArray[13]}}</a>
+<a class="overlay" id="textmarker14">{{markerTextArray[14]}}</a>
+<a class="overlay" id="textmarker15">{{markerTextArray[15]}}</a>
+<a class="overlay" id="textmarker16">{{markerTextArray[16]}}</a>
+<a class="overlay" id="textmarker17">{{markerTextArray[17]}}</a>
+<a class="overlay" id="textmarker18">{{markerTextArray[18]}}</a>
+<a class="overlay" id="textmarker19">{{markerTextArray[19]}}</a>
+<a class="overlay" id="textmarker20">{{markerTextArray[20]}}</a>
+
+
+<!-- Popup -->
+<div id="popup" title="Welcome to OpenLayers"></div>
+	
 <div ng-init="tab=1">
 	<ul>
 		<li class="tab" ng-class="{active:tab==1}">
 			<a href ng-click="tab = 1">ItemList</a>
 		</li>
-	    <li class="tab" ng-class="{active:tab==2}">
+	        <li class="tab" ng-class="{active:tab==2}">
 			<a href ng-click="tab = 2">FullText</a>
 		</li>
 	<ul>
-
-	<p class="tab-content" ng-show="tab==1">{{nouns}}</p>
-	<p class="tab-content" ng-show="tab==2">{{searchResults}}</p>
+	<div class="tab-content" ng-show="tab==1">
+	    <ul>
+	    <li ng-repeat="noun in nouns">
+		{{ noun }}
+	    </li>
+	    </ul>
+	</div>
+	<div class="tab-content" ng-show="tab==2">
+		<p ng-repeat="searchText in searchResults">{{searchText}}</p>
+	</div>
+	<div ng-show="showSummarizerWaitingDiv==1" >
+    	Getting the data, please wait
+	</div>
+		
+	</div>
 	
 </div>
+
 
 </div>
 </div>
