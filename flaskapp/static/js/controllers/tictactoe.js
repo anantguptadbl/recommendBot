@@ -12,8 +12,7 @@ App.controller('tictactoeController', ['$scope','$http', function($scope,$http) 
 	$scope.reset = function() {
 		// At this point, we will send over new data for training
 		$http({url:'/reTrainModel',method:"POST",params:{allSteps:JSON.stringify($scope.boardHistory),label:$scope.currentWinner}}).
-		then(function successCallback(response) { }, 
-			function errorCallback(response) { });
+		then(function successCallback(response) { }); 
 		
 		$scope.board = [
 		[ { value: '-' }, { value: '-' }, { value: '-' } ],

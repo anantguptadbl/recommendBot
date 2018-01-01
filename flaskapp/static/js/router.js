@@ -16,6 +16,10 @@ App.config(function($routeProvider) {
 	templateUrl: 'static/views/summarizer.html',
 	controller: 'summarizerController'
 	})
+	.when('/similarWords', {
+	templateUrl: 'static/views/similarWords.html',
+	controller: 'similarWordsController'
+	})
 	.when('/contact', {
 	templateUrl: 'static/views/contact.html',
 	controller: 'contactController'

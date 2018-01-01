@@ -40,8 +40,16 @@ $("#wrapper").toggleClass("toggled");
 <script src="{{ url_for('static', filename='js/router.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/tictactoe.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/summarizer.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/similarWords.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/about.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/contact.js') }}"></script>
+<!--
+<script type="text/javascript" src="{{ url_for('static', filename='js/controllers/breakOutController.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/breakOut/game.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/breakOut/breakout.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/breakOut/levels.js') }}"></script>
+-->
+
 <!--
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/htmlDataTableController.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/movieRecommender.js') }}"></script>
@@ -53,6 +61,7 @@ $("#wrapper").toggleClass("toggled");
 <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/app.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/simple-sidebar.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/breakout.css') }}">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link href="https://rawgit.com/angular/bower-material/master/angular-material.css" rel="stylesheet">
@@ -90,6 +99,9 @@ $("#wrapper").toggleClass("toggled");
 		</li>
 		<li>
 		    <a href="#/summarizer">Summarizer</a>
+		</li>
+		<li>
+		    <a href="#/similarWords">Similar Words</a>
 		</li>
 		<li>
 		    <a href="#/contact">Contact</a>

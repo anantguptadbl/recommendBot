@@ -1,0 +1,53 @@
+<div ng-app="App">
+<div ng-controller="similarWordsController">
+
+<div class="col-md-12">
+	<textarea style="width:868px;height:264px" ng-model="inputText"></textarea>
+</div>
+</br>
+<div class="col-md-12" align="center">
+	<button ng-click="getWordRelationships()">Get Similarities</button>
+</div>
+
+<!-- 
+<div>	
+	<button ng-click="page='Similarity'"> Similarity </button>
+</div>
+-->
+
+<!-- <div ng-init="page='Similarity'"></div> -->
+
+<!-- <div ng-show="page === 'Similarity'">	-->
+</br>
+</br>
+<div class="col-md-12">
+	</br>
+	<div class="col-md-4">
+		<ul>
+			<li ng-repeat="word in words" ng-click="getWordScores(word)" style="border: 1px solid black">
+			{{ word }}
+			</li>
+		</ul>
+	</div>
+	<div>
+		<table id="finalTable" border="1" class="col-md-8">
+			<thead style="display: table-header-group;vertical-align: middle; border-color: inherit;">
+				<tr>
+					<th>Word 1</th>
+					<th>Word 2</th>
+					<th>1 / Similarity</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="value in arrayList">
+				<td>{{ curWord }}</td>
+				<td>{{ words[value] }}</td>
+				<td>{{ distances[currentWordTag][value]}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</div>
+</div>

@@ -12,6 +12,7 @@ import sys,site
 
 # Add other Libraries
 import summarizer
+import similarity
 
 # Uncomment for AWS
 site.addsitedir('/home/ubuntu/.local/lib/python2.7/site-packages')
@@ -25,6 +26,9 @@ print "the file path is " + os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.dirname(os.path.abspath(__file__)) + '/static'
 print "The template dir is " + template_dir
 app = Flask(__name__,static_folder=template_dir,template_folder=template_dir)
+
+# Read the BreakOut Model
+#breakOutModel = load_model('breakOut_model')
 
 #app = Flask(__name__)
 
@@ -57,6 +61,13 @@ def getModifiedArray(curInput,model):
 	modifiedInput=np.array([y if i !=newPlace else 1 for i,y in enumerate(curInput[0])]).reshape(1,9,)
 	modifiedInput=FlaskBoardtoJSONSingle(modifiedInput[0])
 	return(modifiedInput)
+
+@app.route('/getDataBreakOut', methods=["GET","POST"])
+def getXYDataBreakOut():
+	print(request.args.get('paddleData'));
+	print(request.args.get('BallData'));
+	
+	
 
 @app.route('/getSummarizedResults', methods=["GET","POST"])
 def getSummarizedResults():
@@ -154,6 +165,27 @@ def checkWinner():
 		return(json.dumps([0]))
 	else:
 		return(json.dumps([999]))
+
+@app.route('/getWordSimilarity', methods=["GET","POST"])
+def getWordSimilarity():
+	currentText=request.args.get('data')
+	w1=similarity.wordSimilarity(currentText)
+	w1.preProcessData()
+	w1.removeUnnecessaryCharacter()
+	tagList=['NN','NNS','NNP','NNPS','VB','VBD','VBG']
+	w1.removeTagSentences(tagList)
+	w1.getDictsForWord2Vec()
+	w1.runSkipWords(3)
+	w1.createTrainTestData()
+	w1.tensorFlowInitialization(10)
+	w1.modelTraining(20)
+	w1.getDistances()
+	distances=w1.distances
+	words=w1.uniqueWords
+	print(words)
+	print(distances)
+	del(w1)
+	return(json.dumps({"words":words,"distances":distances}))
 	
 if __name__ == '__main__':
   app.run()
