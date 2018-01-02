@@ -18,7 +18,7 @@ App.controller('similarWordsController', ['$scope','$http', function($scope,$htt
 	$scope.getWordScores=function(curWord)
 	{
 		//document.getElementById('finalTable').DataTable();
-		//$('#finalTable').DataTable();
+		$('#finalTable').DataTable();
 		$scope.curWord=curWord;
 		console.log(curWord);
 		console.log($scope.words.indexOf(curWord))

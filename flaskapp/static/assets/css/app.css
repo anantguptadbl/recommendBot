@@ -187,3 +187,37 @@ text-shadow: black 0.1em 0.1em 0.2em;
 .popover-content {
 min-width: 180px;
 }
+
+/* For a beautiful List */
+#navlist li
+{
+display: inline;
+/* for IE5 and IE6 */
+}
+
+#navlist
+{
+width: 7em;
+/* to display the list horizontaly */
+font-family: sans-serif;
+margin: 0 0 0 3em;
+padding: 0;
+border-top: 1px #000 solid;
+border-left: 1px #000 solid;
+border-right: 1px #000 solid;
+}
+
+#navlist a
+{
+width: 99.99%;
+/* extend the sensible area to the maximum with IE5 */
+display: block;
+background-color: #fff;
+border-bottom: 1px #000 solid;
+text-align: center;
+text-decoration: none;
+color: #000;
+}
+
+#navlist a:hover { background-color: #FFA07A; }
+#navlist a:visited { color: #000; }
